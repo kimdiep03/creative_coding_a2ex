@@ -1,10 +1,11 @@
-document.body.style.margin   = 0;
-document.body.style.overflow = `hidden`;
+// document.body.style.margin   = 0;
+// document.body.style.overflow = `hidden`;
 
 const canvas = document.getElementById (`canvas_element`);
-const ctx = canvas.getContext (`2d`);
-canvas.width = innerWidth;
-canvas.height = innerHeight;
+const ctx = canvas.getContext('2d');
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+console.log(ctx);
 
 class Particle {
 
