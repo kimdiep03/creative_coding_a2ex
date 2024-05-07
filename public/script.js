@@ -35,6 +35,7 @@ class Particle {
       if (this.x > this.effect.width - this.radius || this.x < this.radius) this.vx *= -1;
       
       this.y += this.vy;
+      if (this.x > this.effect.height - this.radius || this.y < this.radius) this.vy *= -1;
    }
 }
 
