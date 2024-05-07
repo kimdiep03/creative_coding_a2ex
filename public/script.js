@@ -82,7 +82,7 @@ class Effect {
          x: 0,
          y: 0, 
          pressed: false, 
-         radius: 150
+         radius: 200
       }
 
       window.addEventListener('resize', e => {
