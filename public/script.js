@@ -5,6 +5,8 @@ const canvas = document.getElementById (`canvas_element`);
 const ctx = canvas.getContext('2d');
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
+canvas.style.backgroundColor = 'black';
+
 ctx.fillStyle = 'red';
 context = ctx;
 console.log(ctx);
