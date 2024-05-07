@@ -1,9 +1,9 @@
 document.body.style.margin   = 0
 document.body.style.overflow = `hidden`
 
-const cnv = document.getElementById (`cnv_element`)
-cnv.width = window.innerWidth
-cnv.height = window.innerHeight
+const canvas = document.getElementById (`cnv_element`)
+canvas.width = window.innerWidth
+canvas.height = window.innerHeight
 
 const ctx = cnv.getContext (`2d`)
 
@@ -12,26 +12,46 @@ const draw_frame = () => {
    ctx.fillRect (0, 0, innerWidth, innerHeight)
 
    requestAnimationFrame (draw_frame)
-
-   ctx.fillStyle = 'white';
-   ctx.fillRect(250, 150, 100, 200);
 }
 
 draw_frame ()
 
 window.onresize = () => {
-   cnv.width = innerWidth
-   cnv.height = innerHeight   
+   canvas.width = innerWidth
+   canvas.height = innerHeight   
 }
 
 class Particle {
+   constructor(effect) {
+      this.effect = effect;
+      this.x = Math.random() * this.effect.width; // random value between 0 and effect width
+      this.y = Math.random() * this.effect.height; // random value between 0 and effect height
+      this.radius = 15;
 
+   }
+   draw(context) {
+      context.beginPath();
+      context.arc(this.x, this.y, this.radius, 0, MATH.PI * 2);
+      context.fill();
+   }
 }
 
 class Effect {
-
+    constructor(canvas) {
+      this.canvas = canvas;
+      this.width = this.canvas.width; //width of the effect
+      this.height = this.canvas.height; //width of the effect
+      this.particles = [];
+      this.numberOfParticles = 20;
+    }
+   createParticles() {
+      for (let i = 0; i < this.numberOfParticles; i++) {
+         this.particle .push(new Particle(this));
+      }
+   }
 }
 
 function animate() {
+
 
 }
