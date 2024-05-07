@@ -17,6 +17,8 @@ class Particle {
       this.y = Math.random() * this.effect.height;
       this.x = this.radius + Math.random() * (this.effect.width - this.radius * 2);
       this.y = this.radius + Math.random() * (this.effect.height - this.radius * 2);
+      this.vx = 1;
+   
    }
    draw(context){
       context.fillStyle = 'hsl('+ this.x * 0.1 +', 100%, 50%)';
@@ -27,7 +29,8 @@ class Particle {
    }
 
    update() {
-      this.x++;
+      this.x += this.vx;
+      if (this.x > this.effect.width - this.radius || this.x < this.radius) this.vx *= -1;
    }
 }
 
