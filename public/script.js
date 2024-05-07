@@ -59,6 +59,10 @@ class Effect {
       this.particles = [];
       this.numberOfParticles = 200;
       this.createParticles();
+
+      window.addEventListener('resize', e => {
+         console.log(e);
+      })
    }
    createParticles(){
       for (let i = 0; i < this.numberOfParticles; i++) {
@@ -70,6 +74,13 @@ class Effect {
          particle.draw(context);
          particle.update();
       });
+   }
+   resize(width, height) {
+      this.canvas.width = width;
+      this.canvas.height = height;
+      this.width = width;
+      this.height = height;
+
    }
 
 }
