@@ -24,7 +24,7 @@ window.onresize = () => {
 class Particle {
    constructor(effect) {
       this.effect = effect;
-      this.radius = Math.random() * 40 + 30;
+      this.radius = Math.random() * 20 + 17;
       this.x = Math.random() * this.effect.width;
       this.y = Math.random() * this.effect.height;
       this.x = this.radius + Math.random() * (this.effect.width - this.radius * 2);
@@ -58,7 +58,7 @@ class Effect {
       this.width = this.canvas.width;
       this.height = this.canvas.height;
       this.particles = [];
-      this.numberOfParticles = 200;
+      this.numberOfParticles = 400;
       this.createParticles();
 
       window.addEventListener('resize', e => {
