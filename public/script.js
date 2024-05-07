@@ -19,6 +19,15 @@ window.onresize = () => {
    canvas.height = innerHeight   
 }
 
+const draw_frame = () => {
+   ctx.fillStyle = `magenta`;
+   ctx.fillRect (0, 0, innerWidth, innerHeight)
+
+   requestAnimationFrame (draw_frame)
+}
+
+draw_frame ()
+
 class Particle {
    constructor(effect) {
       this.effect = effect;
