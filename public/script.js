@@ -49,6 +49,11 @@ class Particle {
       this.y += this.vy;
       if (this.x > this.effect.height - this.radius || this.y < this.radius) this.vy *= -1;
    }
+
+   reset() {
+      this.x = this.radius + Math.random() * (this.effect.width - this.radius * 2);
+      this.y = this.radius + Math.random() * (this.effect.height - this.radius * 2);
+   }
 }
 
 class Effect {
@@ -88,6 +93,9 @@ class Effect {
       gradient.addColorStop(0.75, 'HotPink');
       gradient.addColorStop(1,'Fuchsia');
       this.context.fillStyle = gradient;
+      this.particles.forEach(particle => {
+         particle.reset();
+      })
    }
 
 }
