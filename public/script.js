@@ -16,6 +16,7 @@ class Particle {
       this.radius = 15;
    }
    draw(context){
+      context.fillStyle = 'hsl('+ this.x +', 100%, 50%)';
       context.beginPath();
       context.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
       context.fill();
