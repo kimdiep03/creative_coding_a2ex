@@ -52,8 +52,9 @@ class Particle {
 }
 
 class Effect {
-   constructor(canvas){
+   constructor(canvas, context){
       this.canvas = canvas;
+      this.context = context;
       this.width = this.canvas.width;
       this.height = this.canvas.height;
       this.particles = [];
@@ -61,7 +62,7 @@ class Effect {
       this.createParticles();
 
       window.addEventListener('resize', e => {
-         console.log(e);
+         this.resize(e.target.window.innerWidth, e.target.window.innerHeight);
       })
    }
    createParticles(){
@@ -80,12 +81,12 @@ class Effect {
       this.canvas.height = height;
       this.width = width;
       this.height = height;
-
+      this.context.fillStyle = 'blue';
    }
 
 }
 
-const effect = new Effect(canvas);
+const effect = new Effect(canvas, ctx);
 
 function animate() {
    ctx.clearRect(0, 0, canvas.width, canvas.height);
