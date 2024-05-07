@@ -66,9 +66,28 @@ class Effect {
       this.numberOfParticles = 500;
       this.createParticles();
 
+      this.mouse = {
+         x: 0,
+         y: 0, 
+         pressed: false, 
+         radius: 150
+      }
+
       window.addEventListener('resize', e => {
          this.resize(e.target.window.innerWidth, e.target.window.innerHeight);
-      })
+      });
+
+      window.addEventListener('mousemove', e => {
+         console.log(e);
+      });
+
+      window.addEventListener('mousedown', e => {
+         console.log(e);
+      });
+
+      window.addEventListener('mouseup', e => {
+         console.log(e);
+      });
    }
    createParticles(){
       for (let i = 0; i < this.numberOfParticles; i++) {
