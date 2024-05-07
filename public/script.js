@@ -81,7 +81,7 @@ class Effect {
       this.canvas.height = height;
       this.width = width;
       this.height = height;
-      const gradient = this.context.createLinearGradient(0, 0, canvas.width, canvas.height);
+      const gradient = this.context.createLinearGradient(0, 0, width, height);
       gradient.addColorStop(0, 'LightPink');
       gradient.addColorStop(0.25, 'DeepPink');
       gradient.addColorStop(0.5, 'Magenta');
