@@ -5,6 +5,7 @@ const canvas = document.getElementById (`canvas_element`);
 const ctx = canvas.getContext('2d');
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
+ctx.fillStyle = 'red';
 console.log(ctx);
 
 class Particle {
@@ -15,9 +16,8 @@ class Particle {
       this.radius = 15;
    }
    draw(context){
-      context.fillStyle = 'red';
       context.beginPath();
-      context.arc(this.x, this.y, this.radius, 0, Math.PI *2);
+      context.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
       context.fill();
    }
 }
@@ -46,7 +46,6 @@ class Effect {
 
 const effect = new Effect(canvas);
 effect.handleParticles(ctx);
-
 
 function animate() {
 
