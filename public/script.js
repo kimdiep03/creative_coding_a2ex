@@ -78,15 +78,21 @@ class Effect {
       });
 
       window.addEventListener('mousemove', e => {
-         console.log(e);
+         if (this.mouse.pressed){
+            this.mouse.x = e.x;
+            this.mouse.y = e.y;
+            console.log(this.mouse.x, this.mouse.y);
+         }
       });
 
       window.addEventListener('mousedown', e => {
-         console.log(e);
+         this.mouse.pressed = true;
+         this.mouse.x = e.x;
+         this.mouse.y = e.y;
       });
 
       window.addEventListener('mouseup', e => {
-         console.log(e);
+         this.mouse.pressed = false;
       });
    }
    createParticles(){
