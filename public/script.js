@@ -5,7 +5,7 @@ const canvas = document.getElementById (`cnv_element`)
 canvas.width = window.innerWidth
 canvas.height = window.innerHeight
 
-const ctx = cnv.getContext (`2d`)
+const ctx = canvas.getContext (`2d`)
 
 const draw_frame = () => {
    ctx.fillStyle = `turquoise`
