@@ -30,6 +30,7 @@ class Particle {
 
    }
    draw(context) {
+      context.fillStyle = 'red';
       context.beginPath();
       context.arc(this.x, this.y, this.radius, 0, MATH.PI * 2);
       context.fill();
@@ -57,7 +58,8 @@ class Effect {
 }
 
 const effect = new Effect(canvas);
-console.log(effect);
+effect.handleParticles(context);
+
 
 function animate() {
 
