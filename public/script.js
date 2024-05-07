@@ -46,8 +46,13 @@ class Effect {
     }
    createParticles() {
       for (let i = 0; i < this.numberOfParticles; i++) {
-         this.particle .push(new Particle(this));
+         this.particles.push(new Particle(this));
       }
+   }
+   handleParticles() {
+      this.particles.forEach(particle => {
+         particle.draw();
+      })
    }
 }
 
