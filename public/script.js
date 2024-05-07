@@ -9,24 +9,15 @@ ctx.fillStyle = 'red';
 context = ctx;
 console.log(ctx);
 const gradient = ctx.createLinearGradient(0, 0, canvas.width, canvas.height);
-gradient.addColorStop(0, 'Gainsboro');
-gradient.addColorStop(0.5, 'lightgray');
-gradient.addColorStop(1,'gray');
+gradient.addColorStop(0, 'PaleGreen');
+gradient.addColorStop(0.5, 'Orchid');
+gradient.addColorStop(1,'PaleTurquoise');
 ctx.fillStyle = gradient;
 
 window.onresize = () => {
    canvas.width = innerWidth
    canvas.height = innerHeight   
 }
-
-const draw_frame = () => {
-   ctx.fillStyle = `magenta`;
-   ctx.fillRect (0, 0, innerWidth, innerHeight)
-
-   requestAnimationFrame (draw_frame)
-}
-
-draw_frame ()
 
 class Particle {
    constructor(effect) {
