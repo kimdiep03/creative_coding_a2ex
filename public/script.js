@@ -10,7 +10,9 @@ context = ctx;
 console.log(ctx);
 const gradient = ctx.createLinearGradient(0, 0, canvas.width, canvas.height);
 gradient.addColorStop(0, 'PaleGreen');
+gradient.addColorStop(0.25, 'SeaGreen');
 gradient.addColorStop(0.5, 'Orchid');
+gradient.addColorStop(0.75, 'PaleVioletRed');
 gradient.addColorStop(1,'PaleTurquoise');
 ctx.fillStyle = gradient;
 
