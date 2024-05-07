@@ -5,7 +5,6 @@ const canvas = document.getElementById (`canvas_element`);
 const ctx = canvas.getContext('2d');
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
-context = ctx;
 ctx.fillStyle = 'red';
 console.log(ctx);
 
@@ -17,6 +16,7 @@ class Particle {
       this.radius = 15;
    }
    draw(context){
+      context = ctx;
       context.fillStyle = 'hsl('+ this.x +', 100%, 50%)';
       context.beginPath();
       context.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
