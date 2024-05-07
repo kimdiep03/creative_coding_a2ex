@@ -13,7 +13,7 @@ gradient.addColorStop(0, 'PaleGreen');
 gradient.addColorStop(0.25, 'SpringGreen');
 gradient.addColorStop(0.5, 'Orchid');
 gradient.addColorStop(0.75, 'PaleVioletRed');
-gradient.addColorStop(1,'PaleTurquoise');
+gradient.addColorStop(1,'Fuchsia');
 ctx.fillStyle = gradient;
 
 window.onresize = () => {
