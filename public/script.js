@@ -1,5 +1,5 @@
-// document.body.style.margin   = 0;
-// document.body.style.overflow = `hidden`;
+document.body.style.margin   = 0;
+document.body.style.overflow = `hidden`;
 
 const canvas = document.getElementById (`canvas_element`);
 const ctx = canvas.getContext('2d');
