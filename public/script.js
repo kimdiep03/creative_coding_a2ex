@@ -9,9 +9,9 @@ ctx.fillStyle = 'red';
 context = ctx;
 console.log(ctx);
 const gradient = ctx.createLinearGradient(0, 0, canvas.width, canvas.height);
-gradient.addColorStop(0, 'white');
-gradient.addColorStop(0.5, 'gainsboro');
-gradient.addColorStop(1,'dimgray');
+gradient.addColorStop(0, 'Gainsboro');
+gradient.addColorStop(0.5, 'lightgray');
+gradient.addColorStop(1,'gray');
 ctx.fillStyle = gradient;
 
 window.onresize = () => {
@@ -27,8 +27,8 @@ class Particle {
       this.y = Math.random() * this.effect.height;
       this.x = this.radius + Math.random() * (this.effect.width - this.radius * 2);
       this.y = this.radius + Math.random() * (this.effect.height - this.radius * 2);
-      this.vx = Math.random() * 10 - 8;
-      this.vy = Math.random() * 10 - 8;
+      this.vx = Math.random() * 7 - 5;
+      this.vy = Math.random() * 7 - 5;
 
    
    }
