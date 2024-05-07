@@ -7,20 +7,6 @@ canvas.height = innerHeight
 
 const context = canvas.getContext (`2d`)
 
-const draw_frame = () => {
-   context.fillStyle = `turquoise`;
-   context.fillRect (0, 0, innerWidth, innerHeight)
-
-   requestAnimationFrame(draw_frame);
-}
-
-draw_frame ();
-
-window.onresize = () => {
-   canvas.width = innerWidth;
-   canvas.height = innerHeight;
-}
-
 class Particle {
    constructor(effect) {
       this.effect = effect;
