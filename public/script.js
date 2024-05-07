@@ -11,7 +11,7 @@ console.log(ctx);
 const gradient = ctx.createLinearGradient(0, 0, canvas.width, canvas.height);
 gradient.addColorStop(0, 'white');
 gradient.addColorStop(0.5, 'magenta');
-gradient.addColorStop(1,'blue');
+gradient.addColorStop(1,'cyan');
 ctx.fillStyle = gradient;
 
 window.onresize = () => {
