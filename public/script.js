@@ -12,9 +12,9 @@ console.log(ctx);
 class Particle {
    constructor(effect) {
       this.effect = effect;
+      this.radius = Math.random() * 40 + 30;
       this.x = Math.random() * this.effect.width;
       this.y = Math.random() * this.effect.height;
-      this.radius = 100;
       this.x = this.radius + Math.random() * (this.effect.width - this.radius * 2);
       this.y = this.radius + Math.random() * (this.effect.height - this.radius * 2);
    }
