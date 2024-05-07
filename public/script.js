@@ -51,10 +51,13 @@ class Effect {
    }
    handleParticles() {
       this.particles.forEach(particle => {
-         particle.draw();
-      })
+         particle.draw(context);
+      });
    }
 }
+
+const effect = new Effect(canvas);
+console.log(effect);
 
 function animate() {
 
