@@ -81,7 +81,13 @@ class Effect {
       this.canvas.height = height;
       this.width = width;
       this.height = height;
-      this.context.fillStyle = 'blue';
+      const gradient = this.context.createLinearGradient(0, 0, canvas.width, canvas.height);
+      gradient.addColorStop(0, 'LightPink');
+      gradient.addColorStop(0.25, 'DeepPink');
+      gradient.addColorStop(0.5, 'Magenta');
+      gradient.addColorStop(0.75, 'HotPink');
+      gradient.addColorStop(1,'Fuchsia');
+      this.context.fillStyle = gradient;
    }
 
 }
