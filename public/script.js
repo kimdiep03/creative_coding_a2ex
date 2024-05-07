@@ -43,6 +43,18 @@ class Particle {
    }
 
    update() {
+      if (this.effect.mouse.pressed) {
+         const dx = this.x - this.effect.mouse.x;
+         const dy = this.y - this.effect.mouse.y;
+
+         const distance = Math.hypot(dx, dy);
+         if (distance < this.effect.mouse.radius) {
+            const angle = Math.atan2(dy, dx);
+            this.x += Math.cos(angle);
+            this.y += Math.sin(angle);
+         }
+      }
+      
       this.x += this.vx;
       if (this.x > this.effect.width - this.radius || this.x < this.radius) this.vx *= -1;
       
@@ -81,8 +93,7 @@ class Effect {
          if (this.mouse.pressed){
             this.mouse.x = e.x;
             this.mouse.y = e.y;
-            console.log(this.mouse.x, this.mouse.y);
-         }
+        }
       });
 
       window.addEventListener('mousedown', e => {
