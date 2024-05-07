@@ -1,20 +1,20 @@
 document.body.style.margin   = 0
 document.body.style.overflow = `hidden`
 
-const canvas = document.getElementById (`cnv_element`)
+const canvas = document.getElementById (`canvas_element`)
 canvas.width = window.innerWidth
 canvas.height = window.innerHeight
 
-const ctx = canvas.getContext (`2d`)
+const context = canvas.getContext (`2d`)
 
 const draw_frame = () => {
-   ctx.fillStyle = `turquoise`
-   ctx.fillRect (0, 0, innerWidth, innerHeight)
+   context.fillStyle = `turquoise`
+   context.fillRect (0, 0, innerWidth, innerHeight)
 
-   requestAnimationFrame (draw_frame)
+   requestAnimationFrame(draw_frame);
 }
 
-draw_frame ()
+draw_frame ();
 
 window.onresize = () => {
    canvas.width = innerWidth
