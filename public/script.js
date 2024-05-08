@@ -42,12 +42,32 @@ class Root {
       if (this.size < this.maxSize) {
          ctx.beginPath();
          ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-         ctx.fillStyle = `hsl(140, 100%, ${this.lightness}%)`; 
+         ctx.fillStyle = `hsl(320, 100%, ${this.lightness}%)`; 
 
          ctx.fill();
          ctx.stroke();
          requestAnimationFrame(() => this.update()); // pass ctx to the next frame
+      } else {
+         const flower = new Flower(this.x, this.y, this.size);
+         flower.grow()
       }
+   }
+}
+
+class Flower {
+   constructor(x, y, size){
+      this.x = x;
+      this.y = y;
+      this.size = size;
+      this.maxFlowerSize = this.size + Math.random() * 50;
+      this.image = new Image();
+      this.image.src = 'flower.png';
+   };
+   grow() {
+      if (this.size < this.maxFlowerSize) {
+         this.size += 0.3;
+      } 
+      ctx.drawImage(this.image, this.x, this.y)
    }
 }
 
@@ -58,6 +78,14 @@ window.addEventListener('mousemove', function(e){
          root.update(); // context to the update method
       }  
    } 
+});
+
+window.addEventListener('mousedown', function(e){
+   drawing = true; 
+});
+
+window.addEventListener('mouseup', function(e){
+   drawing = false; 
 });
 
 
