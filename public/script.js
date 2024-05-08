@@ -10,24 +10,42 @@ canvas.style.backgroundColor = 'black';
 context = ctx;
 console.log(ctx);
 
+ctx.globalAlpha = 0.2; // Set global alpha for the entire canvas
+
 window.onresize = () => {
    canvas.width = innerWidth
    canvas.height = innerHeight   
 }
 
+ctx.lineWidth = 0.2;
+ctx.shadowOffsetX = 0;
+ctx.shadowOffsetY = 10;
+ctx.shadowBlur = 10;
+ctx.shadowColor = 'rgab(0, 0, 0 0.5)'; // Change to a contrasting color for visibility
+
+function getRandomHSLColor() {
+   const hue = Math.floor(Math.random() * 60) + 200;
+   const saturation = Math.floor(Math.random() * 80);
+   const lightness = Math.floor(Math.random() * 80);
+   return `hsl(${hue}, ${saturation}%, ${lightness}%)`;
+}
+
 class Root {
-   constructor(x, y) {
+   constructor(x, y, color) {
       this.x = x;
       this.y = y;
-      this.speedX = Math.random() * 4 - 2; // random speed for horizontal movement
-      this.speedY = Math.random() * 4 - 2; // random speed for vertical movement
-      this.maxSize = Math.random() * 7 + 5; // maximum size the object can grow to
+      this.color = color; // store the initial color
+      this.speedX = Math.random() * 5 - 3; // random speed for horizontal movement
+      this.speedY = Math.random() * 5 - 3; // random speed for vertical movement
+      this.maxSize = Math.random() * 7 + 30; // maximum size the object can grow to
       this.size = Math.random() * 1 + 2;
-      this.vs = Math.random() * 0.2 + 0.05; 
+      this.vs = Math.random() * 0.2 + 0.1; 
       this.angleX = Math.random() * 6.2;
       this.vax = Math.random() * 0.6 - 0.3;
       this.angleY = Math.random() * 6.2;
       this.vay = Math.random() * 0.6 - 0.3;
+      this.angle = 0;
+      this.va = Math.random() * 0.02 + 0.05;
       this.lightness = 10;
    }
 
@@ -38,55 +56,27 @@ class Root {
       this.size += this.vs;
       this.angleX += this.vax;
       this.angleY += this.vay;
+      this.angle += this.va;
       if (this.lightness < 70) this.lightness += 0.25;
       if (this.size < this.maxSize) {
-         ctx.beginPath();
-         ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-         ctx.fillStyle = `hsl(320, 100%, ${this.lightness}%)`; 
 
-         ctx.fill();
-         ctx.stroke();
+
+         ctx.save();
+         ctx.translate(this.x, this.y);
+         ctx.rotate(this.angle);
+         ctx.fillStyle = this.color; // Use the stored color 
+         ctx.fillRect(0, 0, this.size, this.size);
+         ctx.strokeStyle = `hsl(169, 100%, ${this.lightness}%)`;
+         ctx.strokeRect(0, 0, this.size * 2, this.size * 2);
          requestAnimationFrame(() => this.update()); // pass ctx to the next frame
-      } else {
-         const flower = new Flower(this.x, this.y, this.size);
-         flower.grow()
+         ctx.restore();
+      } 
       }
    }
-}
 
-class Flower {
-   constructor(x, y, size){
-      this.x = x;
-      this.y = y;
-      this.size = size;
-      this.maxFlowerSize = this.size + Math.random() * 50;
-      this.image = new Image();
-      this.image.src = 'flower.png';
-   };
-   grow() {
-      if (this.size < this.maxFlowerSize) {
-         this.size += 0.3;
-      } 
-      ctx.drawImage(this.image, this.x, this.y)
-   }
-}
 
 window.addEventListener('mousemove', function(e){
-   if (drawing) {
-      for (let i = 0; i< 3; i++) {
-         const root = new Root(e.clientX, e.clientY); // use clientX and clientY for mouse position
+         const root = new Root(e.clientX, e.clientY, getRandomHSLColor()); // 
          root.update(); // context to the update method
-      }  
-   } 
+
 });
-
-window.addEventListener('mousedown', function(e){
-   drawing = true; 
-});
-
-window.addEventListener('mouseup', function(e){
-   drawing = false; 
-});
-
-
-
