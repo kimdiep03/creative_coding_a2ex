@@ -19,14 +19,38 @@ window.onresize = () => {
 
 ctx.lineWidth = 0.2;
 ctx.shadowOffsetX = 0;
-ctx.shadowOffsetY = 10;
+ctx.shadowOffsetY = 20;
 ctx.shadowBlur = 10;
 ctx.shadowColor = 'rgab(0, 0, 0 0.5)'; // Change to a contrasting color for visibility
 
 function getRandomHSLColor() {
-   const hue = Math.floor(Math.random() * 60) + 200;
+   let hueType;
+   if (Math.random() > 0.75) {
+      hueType = 'blue';
+   } else if (Math.random() > 0.5) {
+      hueType = 'green';
+   } else {
+      hueType = Math.random() < 0.75? 'pink' : 'red';
+   }
+
+   let hue;
+   switch(hueType) {
+      case 'blue':
+         hue = Math.floor(Math.random() * 60) + 210; // Hue for blue
+         break;
+      case 'green':
+         hue = Math.floor(Math.random() * 60) + 100; // Hue for green
+         break;
+      case 'pink':
+         hue = Math.floor(Math.random() * 60) + 310; // Hue for pink
+         break;
+      case 'red':
+         hue = Math.floor(Math.random() * 60) + 0; // Hue for red
+         break;
+   }
+
    const saturation = Math.floor(Math.random() * 80);
-   const lightness = Math.floor(Math.random() * 80);
+   const lightness = Math.floor(Math.random() * 5) + 60;
    return `hsl(${hue}, ${saturation}%, ${lightness}%)`;
 }
 
@@ -57,16 +81,15 @@ class Root {
       this.angleX += this.vax;
       this.angleY += this.vay;
       this.angle += this.va;
-      if (this.lightness < 70) this.lightness += 0.25;
+      if (this.lightness < 60) this.lightness += 0.25;
       if (this.size < this.maxSize) {
-
 
          ctx.save();
          ctx.translate(this.x, this.y);
          ctx.rotate(this.angle);
          ctx.fillStyle = this.color; // Use the stored color 
          ctx.fillRect(0, 0, this.size, this.size);
-         ctx.strokeStyle = `hsl(169, 100%, ${this.lightness}%)`;
+         ctx.strokeStyle = `hsl(63, 100%, ${this.lightness}%)`;
          ctx.strokeRect(0, 0, this.size * 2, this.size * 2);
          requestAnimationFrame(() => this.update()); // pass ctx to the next frame
          ctx.restore();
