@@ -59,11 +59,11 @@ class Root {
       this.x = x;
       this.y = y;
       this.color = color; // store the initial color
-      this.speedX = Math.random() * 5 - 3; // random speed for horizontal movement
-      this.speedY = Math.random() * 5 - 3; // random speed for vertical movement
-      this.maxSize = Math.random() * 7 + 30; // maximum size the object can grow to
-      this.size = Math.random() * 1 + 2;
-      this.vs = Math.random() * 0.2 + 0.1; 
+      this.speedX = Math.random() * 10 - 7; // random speed for horizontal movement
+      this.speedY = Math.random() * 10 - 7; // random speed for vertical movement
+      this.maxSize = Math.random() * 10 + 30; // maximum size the object can grow to
+      this.size = Math.random() * 3 + 5;
+      this.vs = Math.random() * 0.2 + 0.2; 
       this.angleX = Math.random() * 6.2;
       this.vax = Math.random() * 0.6 - 0.3;
       this.angleY = Math.random() * 6.2;
