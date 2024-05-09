@@ -11,7 +11,7 @@ canvas.height = window.innerHeight;
 // Set background color
 canvas.style.backgroundColor = 'magenta';
 
-context = ctx;
+//context = ctx;
 console.log(ctx);
 
 ctx.globalAlpha = 0.2; // Set global alpha for the entire canvas
@@ -102,7 +102,7 @@ class Root {
    }
 
 
-window.addEventListener('mousemove', function(e)){
+window.addEventListener('mousemove', function(e)) {
          const root = new Root(e.clientX, e.clientY, getRandomHSLColor()); // 
          root.update(); // context to the update method
 
