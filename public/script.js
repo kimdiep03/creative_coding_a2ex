@@ -102,7 +102,7 @@ class Root {
    }
 
 
-window.addEventListener('mousemove', function(e){
+window.addEventListener('mousemove', function(e)){
          const root = new Root(e.clientX, e.clientY, getRandomHSLColor()); // 
          root.update(); // context to the update method
 
