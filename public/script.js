@@ -3,8 +3,12 @@ document.body.style.overflow = `hidden`;
 
 const canvas = document.getElementById (`canvas_element`);
 const ctx = canvas.getContext('2d');
+
+// Initialize canvas dimensions 
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
+
+// Set background color
 canvas.style.backgroundColor = 'magenta';
 
 console.log(ctx);
@@ -20,7 +24,7 @@ ctx.lineWidth = 0.5;
 ctx.shadowOffsetX = 0;
 ctx.shadowOffsetY = 20;
 ctx.shadowBlur = 10;
-ctx.shadowColor = 'rgab(0, 0, 0 0.5)'; // Change to a contrasting color for visibility
+ctx.shadowColor = 'rgba(0, 0, 0, 0.5)'; // Corrected typo in rgba
 let roots = [];
 
 function getRandomHSLColor() {
@@ -154,10 +158,14 @@ function rgbSplit(imageData, offsets) {
 }
 
 function applyGlitchEffect() {
-   const ctx = canvas.getContext('2d');
-   const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
-   const updatedImageData = rgbSplit(imageData, { rOffset: 20, gOffset: -10, bOffset: 10 });
-   ctx.putImageData(updatedImageData, 0, 0);
+   try {
+       const ctx = canvas.getContext('2d');
+       const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+       const updatedImageData = rgbSplit(imageData, { rOffset: 20, gOffset: -10, bOffset: 10 });
+       ctx.putImageData(updatedImageData, 0, 0);
+   } catch (error) {
+       console.error("Failed to apply glitch effect:", error);
+   }
 }
 
 function animate() {
