@@ -2,19 +2,32 @@ document.body.style.margin   = 0;
 document.body.style.overflow = `hidden`;
 
 const canvas = document.getElementById (`canvas_element`);
+const layer2 = document.getElementById (`layer2`);
+
 const ctx = canvas.getContext('2d');
+const ctx2 = layer2.getContext('2d');
 
 // Initialize the canvas size
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
 
+// Initialize layer2 size
+layer2.width = window.innerWidth;
+layer2.height = window.innerHeight;
+
 // Set background color
-canvas.style.backgroundColor = 'magenta';
+canvas.style.backgroundColor = 'MediumSpringGreen';
 
 //context = ctx;
 console.log(ctx);
 
-ctx.globalAlpha = 0.2; // Set global alpha for the entire canvas
+const CELL_SIZE = 64;
+let WIDTH_CELLS = null;
+let HEIGHT_CELLS = null;
+
+let totalTime = 0.0;
+
+ctx.globalAlpha = 0.009; // Set global alpha for the entire canvas
 
 window.onresize = () => {
    canvas.width = innerWidth
@@ -25,14 +38,21 @@ ctx.lineWidth = 0.5;
 ctx.shadowOffsetX = 0;
 ctx.shadowOffsetY = 20;
 ctx.shadowBlur = 10;
-ctx.shadowColor = 'rgab(0, 0, 0 0.5)'; // Change to a contrasting color for visibility
+ctx.shadowColor = 'rgab(0, 0, 0, 0.5)'; // Change to a contrasting color for visibility
 
+// Random colors for the squares to draw
 function getRandomHSLColor() {
    let hueType;
+
+   // If value > 0.75, draw blue 
    if (Math.random() > 0.75) {
       hueType = 'blue';
+   
+   // If value > 0.5, draw green 
    } else if (Math.random() > 0.5) {
       hueType = 'green';
+   
+   // If value < 0.75, draw pink or red
    } else {
       hueType = Math.random() < 0.75? 'pink' : 'red';
    }
@@ -59,26 +79,27 @@ function getRandomHSLColor() {
 }
 
 class Root {
-   constructor(x, y, color) {
+   constructor(x, y, color, ctx) {
       this.x = x;
       this.y = y;
-      this.color = color; // store the initial color
-      this.speedX = Math.random() * 10 - 7; // random speed for horizontal movement
-      this.speedY = Math.random() * 10 - 7; // random speed for vertical movement
+      this.ctx = ctx;
+      this.color = color; // store the color
+      this.speedX = Math.random() * 15 - 10; // random speed for horizontal movement
+      this.speedY = Math.random() * 15 - 10; // random speed for vertical movement
       this.maxSize = Math.random() * 20 + 30; // maximum size the object can grow to
-      this.size = Math.random() * 3 + 5;
-      this.vs = Math.random() * 0.2 + 0.2; 
-      this.angleX = Math.random() * 6.2;
-      this.vax = Math.random() * 0.6 - 0.3;
-      this.angleY = Math.random() * 6.2;
-      this.vay = Math.random() * 0.6 - 0.3;
-      this.angle = 0;
-      this.va = Math.random() * 0.02 + 0.05;
-      this.lightness = 10;
+      this.size = Math.random() * 3 + 5; // random size
+      this.vs = Math.random() * 0.2 + 0.2; // random value for grow size
+      this.angleX = Math.random() * 6.2; //random horizontal angles for rotation
+      this.vax = Math.random() * 0.6 - 0.3; // random rates of change of the X rotation angles
+      this.angleY = Math.random() * 6.2; //random vertical angles for rotation
+      this.vay = Math.random() * 0.6 - 0.3; // random rates of change of the Y rotation angles
+      this.angle = 0; // current rotation angle
+      this.va = Math.random() * 0.02 + 0.05; //random value to adjust this angle over time, affecting the object's rotation speed.
+      this.lightness = 10; // set lightness
    }
 
 
-   update() {
+   update(ctx) {
       this.x += this.speedX + Math.sin(this.angleX); //positive value: move to the right, negative value: move to the left
       this.y += this.speedY + Math.sin(this.angleY);// negative value: move upward, positive value: downward
       this.size += this.vs;
@@ -95,7 +116,7 @@ class Root {
          ctx.fillRect(0, 0, this.size, this.size);
          ctx.strokeStyle = `hsl(63, 100%, ${this.lightness}%)`;
          ctx.strokeRect(0, 0, this.size * 2, this.size * 2);
-         requestAnimationFrame(() => this.update()); // pass ctx to the next frame
+         requestAnimationFrame(() => this.update(ctx)); // pass ctx to the next frame
          ctx.restore();
       } 
       }
@@ -106,3 +127,68 @@ class Root {
       const root = new Root(e.clientX, e.clientY, getRandomHSLColor(), ctx); // Pass ctx to the constructor
       root.update(ctx); // Pass ctx to the update method
    });
+
+   // Layer2: glass layer
+
+   function setup() {
+      layer2.width = window.innerWidth;
+      layer2.height = window.innerHeight;
+      WIDTH_CELLS = Math.ceil(window.innerWidth * window.devicePixelRatio / CELL_SIZE);
+      HEIGHT_CELLS = Math.ceil(window.innerHeight * window.devicePixelRatio / CELL_SIZE);
+      layer2.width = WIDTH_CELLS * CELL_SIZE;
+      layer2.height = HEIGHT_CELLS * CELL_SIZE;
+      
+    }
+
+   /// Define the backgroundEffect function
+   function backgroundEffect() {
+      ctx2.fillStyle = '#f00';
+      ctx2.fillRect(0, 0, canvas.width, canvas.height);
+      ctx2.fillStyle = '#0f0';
+      ctx2.fillRect(100, 100, 200, 200);
+   }
+ 
+ // Define the glassSquare function
+   function glassSquare(cellX, cellY, gx, gy, color1, color2) {
+      const realLeft = cellX * CELL_SIZE;
+      const realTop = cellY * CELL_SIZE;
+      const gx1 = Math.max(1.0, Math.min(gx, 1.0));
+      const gy1 = Math.max(1.0, Math.min(gy, 1.0));
+      const gx2 = 1.0 - gx1;
+      const gy2 = 1.0 - gy1;
+      
+      // Use solid colors for a more pixelated look
+      ctx2.fillStyle = color1;
+      ctx2.fillRect(realLeft, realTop, CELL_SIZE, CELL_SIZE);
+      
+      // Optionally, you can add a border for a more distinct look
+      ctx2.strokeStyle = color2;
+      ctx2.strokeRect(realLeft, realTop, CELL_SIZE, CELL_SIZE);
+   }
+ 
+   // Define the glass function with animation
+   function glass() {
+      for (let cellY = 0; cellY < HEIGHT_CELLS; ++cellY) {
+      for (let cellX = 0; cellX < WIDTH_CELLS; ++cellX) {
+         // Calculate a color based on the square's position for animation
+         const color1 = `hsl(${(cellX % 360) * 3}, 100%, 50%)`; // Example: changing hue based on x position
+         const color2 = `hsl(${(cellY % 360) * 3}, 100%, 50%)`; // Example: changing hue based on y position
+         
+         glassSquare(cellX, cellY, Math.abs(Math.sin(totalTime * 0.0005)), Math.abs(Math.cos(totalTime * 0.0005)), color1, color2);
+      }
+      }
+   }
+ // Define the draw function
+   function draw() {
+      totalTime += 0.0167; // Assuming 60 FPS, adjust as needed
+      ctx2.clearRect(0, 0, canvas.width, canvas.height); // Clear the canvas
+      backgroundEffect();
+      glass();
+      requestAnimationFrame(draw); // Call draw again on next frame
+   }
+   
+ // Call setup and start the animation loop
+   setup();
+   draw();
+
+   console.log(layer2)
