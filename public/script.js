@@ -21,25 +21,30 @@ canvas.style.backgroundColor = 'MediumSpringGreen';
 //context = ctx;
 console.log(ctx);
 
-const CELL_SIZE = 32;
-let WIDTH_CELLS = null;
-let HEIGHT_CELLS = null;
+// const CELL_SIZE = 32;
+// let WIDTH_CELLS = null;
+// let HEIGHT_CELLS = null;
 
-let totalTime = 0.0;
+// let totalTime = 0.0;
 
-ctx.globalAlpha = 0.09; // Set global alpha for the entire canvas
-//ctx2.globalAlpha = 0.005;
+ctx.globalAlpha = 0.5; // Set global alpha for the entire canvas
+ctx2.globalBlur = 0.5;
 
 window.onresize = () => {
    canvas.width = innerWidth
    canvas.height = innerHeight   
 }
 
-ctx.lineWidth = 0.5;
-ctx.shadowOffsetX = 0;
-ctx.shadowOffsetY = 20;
-ctx.shadowBlur = 10;
-ctx.shadowColor = 'rgab(0, 0, 0, 0.5)'; // Change to a contrasting color for visibility
+// Background music
+const audio = document.getElementById("myAudio");
+audio.autoplay = true;
+audio.loop = true;
+
+ctx.lineWidth = 0.5; // Stroke width
+ctx.shadowOffsetX = 0; // Rectangles' x shadow
+ctx.shadowOffsetY = 20; // Rectangles' y shadow
+ctx.shadowBlur = 10; // Shadow blur
+ctx.shadowColor = 'rgab(0, 0, 0, 0.5)'; // Shadow color
 
 // Random colors for the squares to draw
 function getRandomHSLColor() {
@@ -74,8 +79,8 @@ function getRandomHSLColor() {
          break;
    }
 
-   const saturation = Math.floor(Math.random() * 80);
-   const lightness = Math.floor(Math.random() * 5) + 60;
+   const saturation = Math.floor(Math.random() * 100); // Random saturation value between 0 and 80
+   const lightness = Math.floor(Math.random() * 5) + 60; // Random lightness value between 
    return `hsl(${hue}, ${saturation}%, ${lightness}%)`;
 }
 
@@ -85,10 +90,10 @@ class Root {
       this.y = y;
       this.ctx = ctx;
       this.color = color; // store the color
-      this.speedX = Math.random() * 15 - 10; // random speed for horizontal movement
-      this.speedY = Math.random() * 15 - 10; // random speed for vertical movement
-      this.maxSize = Math.random() * 20 + 30; // maximum size the object can grow to
-      this.size = Math.random() * 3 + 5; // random size
+      this.speedX = Math.random() * 20 - 15; // random speed for horizontal movement
+      this.speedY = Math.random() * 20 - 15; // random speed for vertical movement
+      this.maxSize = Math.random() * 25 + 35; // maximum size the object can grow to
+      this.size = Math.random() * 5 + 7; // random size
       this.vs = Math.random() * 0.2 + 0.2; // random value for grow size
       this.angleX = Math.random() * 6.2; //random horizontal angles for rotation
       this.vax = Math.random() * 0.6 - 0.3; // random rates of change of the X rotation angles
@@ -128,6 +133,18 @@ class Root {
       const root = new Root(e.clientX, e.clientY, getRandomHSLColor(), ctx); // Pass ctx to the constructor
       root.update(ctx); // Pass ctx to the update method
    });
+
+   // Play audio after the DOM is fully loaded
+   document.addEventListener('DOMContentLoaded', function() {
+      const audio = document.getElementById("myAudio");
+      if (audio) {
+          audio.autoplay = true;
+          audio.loop = true;
+          audio.play().catch(error => console.error('Error playing audio:', error));
+      } else {
+          console.error('Audio element not found');
+      }
+  });
 
 //    // Layer2: glass layer
 //    function setup() {
