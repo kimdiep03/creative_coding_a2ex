@@ -6,6 +6,8 @@
       font-family: "MyCustomFont";
       src: url("ABCEstragonEdu-Regular.woff") format("woff");
     }
+
+    /* text */
     .centered-div {
       /* glow effect  */
       text-shadow: 0px 0px 5px magenta, /* Inner glow */ 0px 0px 10px magenta,
@@ -13,14 +15,20 @@
         /* Outer glow */ 0px 0px 30px magenta; /* Far outer glow */
       color: yellow;
       position: fixed;
-      top: 80%;
+      top: 83%;
       left: 50%;
       transform: translate(-50%, -50%);
       font-family: "MyCustomFont", Helvetica, sans-serif;
       font-size: 35px;
       font-weight: bold;
       text-align: center;
-      line-height: 40px;
+      line-height: 38px;
+    }
+
+    /* text selection highlight */
+    ::selection {
+      color: red;
+      background: yellow;
     }
   </style>
 </head>
@@ -30,15 +38,18 @@
 
   <script src="script.js"></script>
 
+  <!-- Background music -->
   <audio autoplay id="myAudio" allow="autoplay">
     <source src="coding1.mp3" type="audio/mpeg" />
   </audio>
 
+  <!-- Instruction text -->
   <div class="centered-div">
     <p>CLICK ANYWHERE TO START HARMONIZING</p>
-    <p>(caution: lower the volume)</p>
+    <p>( ! caution: lower the volume ! )</p>
   </div>
 
+  <!-- Hide the text when mouse clicked -->
   <script>
     document.addEventListener("DOMContentLoaded", function () {
       // Select the.centered-div element
