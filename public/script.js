@@ -27,7 +27,7 @@ let HEIGHT_CELLS = null;
 
 let totalTime = 0.0;
 
-//ctx.globalAlpha = 0.09; // Set global alpha for the entire canvas
+ctx.globalAlpha = 0.09; // Set global alpha for the entire canvas
 //ctx2.globalAlpha = 0.005;
 
 window.onresize = () => {
