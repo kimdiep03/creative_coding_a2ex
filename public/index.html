@@ -5,9 +5,11 @@
 
 <body>
    <canvas id="canvas_element"></canvas>
+   <canvas id="layer2" style="position:absolute; top:0; left:0; width:100%; height:100%; z-index:1;"></canvas>
+
    <script src="script.js"></script>
-   <canvas id="layer2" style="display:none;"></canvas>
-   <style>
+
+   <!-- <style>
     #layer2 {
       position: absolute;
       top: 0;
@@ -16,11 +18,14 @@
       height: 100%;
       z-index: 1; 
     }
-    </style>
+    </style> -->
 
-    <audio autoplay id="myaudio" allow="autoplay">
+    <audio autoplay id="myAudio" allow="autoplay">
     <source src="coding1.mp3" type="audio/mpeg">
-    </audio> 
+    </audio>
+
+    <audio id="mouseUpSound" src="mouse-up-sound.mp3"></audio>
+    <audio id="mouseDownSound" src="mouse-down-sound.mp3"></audio>
 
 </body>
 
