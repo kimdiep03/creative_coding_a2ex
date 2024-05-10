@@ -2,18 +2,11 @@ document.body.style.margin   = 0;
 document.body.style.overflow = `hidden`;
 
 const canvas = document.getElementById (`canvas_element`);
-const layer2 = document.getElementById (`layer2`);
-
 const ctx = canvas.getContext('2d');
-const ctx2 = layer2.getContext('2d');
 
 // Initialize the canvas size
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
-
-// Initialize layer2 size
-layer2.width = window.innerWidth;
-layer2.height = window.innerHeight;
 
 // Set background color
 canvas.style.backgroundColor = 'MediumSpringGreen';
@@ -21,7 +14,7 @@ canvas.style.backgroundColor = 'MediumSpringGreen';
 //context = ctx;
 console.log(ctx);
 
-ctx.globalAlpha = 0.3; // Set global alpha for the entire canvas
+ctx.globalAlpha = 0.2; // Set global alpha for the entire canvas
 
 window.onresize = () => {
    canvas.width = innerWidth
