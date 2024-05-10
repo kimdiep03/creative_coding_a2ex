@@ -3,10 +3,11 @@ document.body.style.overflow = `hidden`;
 
 const canvas = document.getElementById("canvas_element");
 const ctx = canvas.getContext("2d");
-const layer2 = document.getElementById("layer2");
-const ctx2 = layer2.getContext("2d");
 
+// Initialize oscillator for sound effects
 let oscillator = null;
+
+// Initialize audioCtx for sound effects
 let audioCtx = null;
 
 // Initialize the canvas size
@@ -16,10 +17,6 @@ canvas.height = window.innerHeight;
 // Set background color
 canvas.style.backgroundColor = "MediumSpringGreen";
 
-// Initialize layer2 size
-layer2.width = window.innerWidth;
-layer2.height = window.innerHeight;
-
 ctx.globalAlpha = 0.5; // Set global alpha for the entire canvas
 
 window.onresize = () => {
@@ -27,12 +24,13 @@ window.onresize = () => {
   canvas.height = innerHeight;
 };
 
-// Background music
+// Background music + sound effect
 function playAudio() {
+  // Background music
   const audio = document.getElementById("myAudio");
   if (audio) {
     audio.volume = 1;
-    audio.loop();
+    audio.loop = true;
     audio.play().catch((error) => console.error("Error playing audio:", error));
   } else {
     console.error("Audio element not found");
@@ -49,14 +47,12 @@ function playAudio() {
   oscillator.connect(gainNode);
   gainNode.connect(audioCtx.destination);
   oscillator.start();
-
-  // create web audio api context
 }
 
 window.addEventListener("click", playAudio);
 
 // Global canvas setting
-ctx.lineWidth = 0.5; // Stroke width
+ctx.lineWidth = 0.2; // Stroke width
 ctx.shadowOffsetX = 0; // Rectangles' x shadow
 ctx.shadowOffsetY = 20; // Rectangles' y shadow
 ctx.shadowBlur = 10; // Shadow blur
@@ -147,33 +143,33 @@ window.addEventListener("mousemove", function (e) {
   root.update(ctx); // Pass ctx to the update method
 
   oscillator?.frequency.setValueAtTime(
-    220 + 880 * (1.0 - e.clientY / window.innerHeight),
+    50 + 700 * (1.0 - e.clientY / window.innerHeight),
     audioCtx.currentTime
   ); // value in hertz
 });
 
-// Layer 2
+// // Layer 2
 
-// Global settings
-ctx2.lineWidth = 10;
-ctx2.strokeStyle = "magenta";
+// // Global settings
+// ctx2.lineWidth = 10;
+// ctx2.strokeStyle = "magenta";
 
-class Line {
-  constructor() {
-    this.startX = Math.random() * canvas.width; // Start point x: random value between 0 and canvas width
-    this.startY = Math.random() * canvas.height; // Start point y: random value between 0 and canvas width
-    this.endX = Math.random() * canvas.width; // End point x: random value between 0 and canvas width
-    this.endY = Math.random() * canvas.height; // End point y: random value between 0 and canvas width
-    this.lineWidth = Math.floor(Math.random() * 15 + 1);
-  }
-  draw() {
-    ctx2.lineWidth = this.lineWidth;
-    ctx2.beginPath();
-    ctx2.moveTo(this.startX, this.startY);
-    ctx2.lineTo(this.endX, this.endY);
-    ctx2.stroke();
-  }
-}
+// class Line {
+//   constructor() {
+//     this.startX = Math.random() * canvas.width; // Start point x: random value between 0 and canvas width
+//     this.startY = Math.random() * canvas.height; // Start point y: random value between 0 and canvas width
+//     this.endX = Math.random() * canvas.width; // End point x: random value between 0 and canvas width
+//     this.endY = Math.random() * canvas.height; // End point y: random value between 0 and canvas width
+//     this.lineWidth = Math.floor(Math.random() * 15 + 1);
+//   }
+//   draw() {
+//     ctx2.lineWidth = this.lineWidth;
+//     ctx2.beginPath();
+//     ctx2.moveTo(this.startX, this.startY);
+//     ctx2.lineTo(this.endX, this.endY);
+//     ctx2.stroke();
+//   }
+// }
 
-const line1 = new Line();
-line1.draw();
+// const line1 = new Line();
+// line1.draw();

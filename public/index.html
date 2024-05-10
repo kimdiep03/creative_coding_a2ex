@@ -1,31 +1,40 @@
-<!doctype html>
+<!DOCTYPE html>
 <head>
-    <title> carnival </title>
+  <title>singing contest</title>
+  <style>
+    @font-face {
+      font-family: "MyCustomFont";
+      src: url("ABCAsfaltEdu-CondensedRegular.otf") format("otf");
+    }
+    .centered-div {
+      /* glow effect  */
+      text-shadow: 0px 0px 5px yellow, /* Inner glow */ 0px 0px 10px yellow,
+        /* Middle glow */ 0px 0px 20px yellow,
+        /* Outer glow */ 0px 0px 30px yellow; /* Far outer glow */
+      color: magenta;
+      position: fixed;
+      top: 80%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-family: Arial, sans-serif, "MyCustomFont";
+      font-size: 24px;
+      font-weight: bold;
+      text-align: center;
+    }
+  </style>
 </head>
 
 <body>
-   <canvas id="canvas_element"></canvas>
-   <canvas id="layer2" style="position:absolute; top:0; left:0; width:100%; height:100%; z-index:1;"></canvas>
+  <canvas id="canvas_element"></canvas>
 
-   <script src="script.js"></script>
+  <script src="script.js"></script>
 
-   <!-- <style>
-    #layer2 {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      z-index: 1; 
-    }
-    </style> -->
+  <audio autoplay id="myAudio" allow="autoplay">
+    <source src="coding1.mp3" type="audio/mpeg" />
+  </audio>
 
-    <audio autoplay id="myAudio" allow="autoplay">
-    <source src="coding1.mp3" type="audio/mpeg">
-    </audio>
-
-    <audio id="mouseUpSound" src="mouse-up-sound.mp3"></audio>
-    <audio id="mouseDownSound" src="mouse-down-sound.mp3"></audio>
-
+  <div class="centered-div">
+    <p>CLICK ANYWHERE TO START HARMONIZING</p>
+    <p>(caution: lower the volume)</p>
+  </div>
 </body>
-
