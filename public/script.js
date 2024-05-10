@@ -35,6 +35,7 @@ function playAudio() {
   } else {
     console.error("Audio element not found");
   }
+
   // create web audio api context
   audioCtx = new (window.AudioContext || window.webkitAudioContext)();
 
