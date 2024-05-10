@@ -23,5 +23,16 @@
     <source src="sounds/coding1.mp3" type="audio/mpeg">
     </audio> -->
 
-    <audio controls src="coding1.mp3"></audio>
+    <audio autoplay src="coding1.mp3"></audio>
 </body>
+
+<script>
+  function playAudio() {
+      const audio = document.getElementById("myAudio");
+      if (audio) {
+          audio.play().catch(error => console.error('Error playing audio:', error));
+      } else {
+          console.error('Audio element not found');
+      }
+  }
+  </script>
