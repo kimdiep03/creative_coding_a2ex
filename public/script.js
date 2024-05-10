@@ -27,8 +27,8 @@ console.log(ctx);
 
 // let totalTime = 0.0;
 
-ctx.globalAlpha = 0.5; // Set global alpha for the entire canvas
-ctx2.globalBlur = 0.5;
+ctx.globalAlpha = 0.3; // Set global alpha for the entire canvas
+//ctx2.globalAlpha = 0.5;
 
 window.onresize = () => {
    canvas.width = innerWidth
@@ -36,9 +36,12 @@ window.onresize = () => {
 }
 
 // Background music
-const audio = document.getElementById("myAudio");
-audio.autoplay = true;
-audio.loop = true;
+// const audio = document.getElementById("myAudio");
+// audio.autoplay = true;
+// audio.loop = true;
+
+//document.getElementById('myAudio').play();
+
 
 ctx.lineWidth = 0.5; // Stroke width
 ctx.shadowOffsetX = 0; // Rectangles' x shadow
@@ -134,17 +137,18 @@ class Root {
       root.update(ctx); // Pass ctx to the update method
    });
 
-   // Play audio after the DOM is fully loaded
-   document.addEventListener('DOMContentLoaded', function() {
-      const audio = document.getElementById("myAudio");
-      if (audio) {
-          audio.autoplay = true;
-          audio.loop = true;
-          audio.play().catch(error => console.error('Error playing audio:', error));
-      } else {
-          console.error('Audio element not found');
-      }
-  });
+//    // Play audio after the DOM is fully loaded
+//    document.addEventListener('DOMContentLoaded', function() {
+//       const audio = document.getElementById("myAudio");
+//       if (audio) {
+//           audio.autoplay = true;
+//           audio.loop = true;
+//           audio.play().catch(error => console.error('Error playing audio:', error));
+//       } else {
+//           console.error('Audio element not found');
+//       }
+//   });
+
 
 //    // Layer2: glass layer
 //    function setup() {
