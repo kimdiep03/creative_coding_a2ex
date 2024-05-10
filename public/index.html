@@ -6,6 +6,17 @@
 <body>
    <canvas id="canvas_element"></canvas>
    <script src="script.js"></script>
+   <canvas id="layer2" style="display:none;"></canvas>
+   <style>
+    #layer2 {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 1; 
+    }
+    </style>
 
     <audio autoplay id="myaudio" allow="autoplay">
     <source src="coding1.mp3" type="audio/mpeg">

@@ -11,6 +11,14 @@ canvas.height = window.innerHeight;
 // Set background color
 canvas.style.backgroundColor = 'MediumSpringGreen';
 
+const layer2 = document.getElementById (`layer2`);
+const ctx2 = layer2.getContext('2d');
+
+// Initialize layer2 size
+layer2.width = window.innerWidth;
+layer2.height = window.innerHeight;
+
+
 //context = ctx;
 console.log(ctx);
 
@@ -33,7 +41,7 @@ function playAudio() {
 
 //document.getElementById('myAudio').play();
 
-
+// Global canvas setting
 ctx.lineWidth = 0.5; // Stroke width
 ctx.shadowOffsetX = 0; // Rectangles' x shadow
 ctx.shadowOffsetY = 20; // Rectangles' y shadow
@@ -74,8 +82,8 @@ function getRandomHSLColor() {
    }
 
    const saturation = Math.floor(Math.random() * 100); // Random saturation value between 0 and 80
-   const lightness = Math.floor(Math.random() * 5) + 60; // Random lightness value between 
-   return `hsl(${hue}, ${saturation}%, ${lightness}%)`;
+   const lightness = Math.floor(Math.random() * 5) + 60; // Random lightness value between 60 and 65
+   return `hsl(${hue}, ${saturation}%, ${lightness}%)`; // String of the values of hue, saturation, and lightness.
 }
 
 class Root {
@@ -124,6 +132,21 @@ class Root {
 
 
    window.addEventListener('mousemove', function(e) {
-      const root = new Root(e.clientX, e.clientY, getRandomHSLColor(), ctx); // Pass ctx to the constructor
+      const root = new Root(e.clientX, e.clientY, getRandomHSLColor(), ctx); 
       root.update(ctx); // Pass ctx to the update method
    });
+
+// Layer 2
+
+// Global settings 
+ctx2.lineWidth = 10;
+ctx2.strokeStyle = 'magenta';
+
+class Line {
+   constructor() {
+      this.startX = Math.random() * canvas.width; // Random 
+      this.startY = Math.random() * canvas.height;
+      this.endX = Math.random() * canvas.width;
+      this.endY = Math.random() * canvas.height;
+   }
+}
