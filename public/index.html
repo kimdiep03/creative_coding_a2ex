@@ -8,18 +8,19 @@
     }
     .centered-div {
       /* glow effect  */
-      text-shadow: 0px 0px 5px yellow, /* Inner glow */ 0px 0px 10px yellow,
-        /* Middle glow */ 0px 0px 20px yellow,
-        /* Outer glow */ 0px 0px 30px yellow; /* Far outer glow */
-      color: magenta;
+      text-shadow: 0px 0px 5px magenta, /* Inner glow */ 0px 0px 10px magenta,
+        /* Middle glow */ 0px 0px 20px magenta,
+        /* Outer glow */ 0px 0px 30px magenta; /* Far outer glow */
+      color: yellow;
       position: fixed;
-      top: 80%;
+      top: 85%;
       left: 50%;
       transform: translate(-50%, -50%);
-      font-family: Arial, sans-serif, "MyCustomFont";
+      font-family: "MyCustomFont", Helvetica, sans-serif;
       font-size: 24px;
       font-weight: bold;
       text-align: center;
+      line-height: 15px;
     }
   </style>
 </head>
@@ -37,4 +38,19 @@
     <p>CLICK ANYWHERE TO START HARMONIZING</p>
     <p>(caution: lower the volume)</p>
   </div>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      // Select the.centered-div element
+      const centeredDiv = document.querySelector(".centered-div");
+
+      // Function to hide the.centered-div
+      function hideCenteredDiv() {
+        centeredDiv.style.display = "none";
+      }
+
+      // Example usage: Hide the.centered-div when the document is clicked
+      document.addEventListener("click", hideCenteredDiv);
+    });
+  </script>
 </body>

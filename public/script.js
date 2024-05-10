@@ -147,29 +147,3 @@ window.addEventListener("mousemove", function (e) {
     audioCtx.currentTime
   ); // value in hertz
 });
-
-// // Layer 2
-
-// // Global settings
-// ctx2.lineWidth = 10;
-// ctx2.strokeStyle = "magenta";
-
-// class Line {
-//   constructor() {
-//     this.startX = Math.random() * canvas.width; // Start point x: random value between 0 and canvas width
-//     this.startY = Math.random() * canvas.height; // Start point y: random value between 0 and canvas width
-//     this.endX = Math.random() * canvas.width; // End point x: random value between 0 and canvas width
-//     this.endY = Math.random() * canvas.height; // End point y: random value between 0 and canvas width
-//     this.lineWidth = Math.floor(Math.random() * 15 + 1);
-//   }
-//   draw() {
-//     ctx2.lineWidth = this.lineWidth;
-//     ctx2.beginPath();
-//     ctx2.moveTo(this.startX, this.startY);
-//     ctx2.lineTo(this.endX, this.endY);
-//     ctx2.stroke();
-//   }
-// }
-
-// const line1 = new Line();
-// line1.draw();
